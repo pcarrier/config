@@ -1,6 +1,4 @@
 {config, lib, pkgs, ...}:
-let customPkgs = import ./packages.nix { pkgs = pkgs; };
-in
 {
   boot = {
     blacklistedKernelModules = [ "snd_pcsp" "pcspkr" ];
@@ -10,7 +8,7 @@ in
       "fs.inotify.max_queued_events" = 32768;
       "vm.dirty_writeback_centisecs" = 6000;
     };
-    kernelPackages = pkgs.linuxPackages_4_13;
+    kernelPackages = pkgs.kernelPackages;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
     loader = {
       systemd-boot.enable = true;
@@ -20,7 +18,7 @@ in
   };
   environment.systemPackages = with pkgs; [
     coreutils
-    linuxPackages.perf
+    kernelPackages.perf
     powertop
   ];
   hardware = {
@@ -46,7 +44,7 @@ in
       dejavu_fonts
       emojione
       font-droid
-      customPkgs.pragmatapro
+      pkgs.pragmatapro
       noto-fonts
       noto-fonts-emoji
       ubuntu_font_family
@@ -93,13 +91,9 @@ in
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
   };
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs : rec {
-      mpv = pkgs.mpv.override {
-        vapoursynthSupport = true;
-      };
-    };
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ (import ./pkgs) ];
   };
   powerManagement = {
     cpuFreqGovernor = "ondemand";
@@ -117,6 +111,7 @@ in
     zsh = {
       enable = true;
       enableAutosuggestions = true;
+      promptInit = "";
       syntaxHighlighting.enable = true;
     };
   };
@@ -156,6 +151,11 @@ in
       windowManager.i3.enable = true;
     };
     zfs.autoSnapshot.enable = true;
+    znapzend = {
+      autoCreation = true;
+      enable = true;
+      noDestroy = true;
+    };
   };
   system.stateVersion = "17.09";
   time.timeZone = "America/Toronto";

@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} } :
+{ pkgs } :
 let env = pkgs.buildFHSUserEnv {
   name = "monorepo";
   targetPkgs = pkgs: with pkgs; [
