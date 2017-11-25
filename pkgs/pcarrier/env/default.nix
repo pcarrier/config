@@ -61,9 +61,10 @@ buildEnv {
     visualvm
     vim
     wget
+    xclip
     xorg.xev
     zip
     # because monorepo
-    python gcc
+    direnv gcc patchelf python
   ];
 }
