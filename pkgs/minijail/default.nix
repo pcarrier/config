@@ -1,7 +1,5 @@
 { stdenv, fetchgit, libcap }:
 
-assert stdenv.isLinux;
-
 stdenv.mkDerivation rec {
   shortname = "minijail";
   name = "${shortname}-${version}";
@@ -19,7 +17,6 @@ stdenv.mkDerivation rec {
 
   preConfigure = ''
     substituteInPlace common.mk --replace /bin/echo echo
-    sed -i '/#include <asm\/siginfo.h>/ d' signal_handler.c
   '';
 
   installPhase = ''

@@ -1,14 +1,11 @@
-{ stdenv, coreutils, xclip }:
-stdenv.mkDerivation rec {
-  name = "clipshot";
-  buildInputs = [ coreutils xclip ];
+{ stdenv, writeScriptBin, scrot, xclip }:
 
-  src = ./clipshot;
-
-  phases = [ "installPhase" ];
-
-  installPhase = ''
-    install -Dm755 ${src} $out/bin/clipshot
-    patchShebangs $out/bin/clipshot
-  '';
-}
+writeScriptBin "clipshot" ''
+#!${stdenv.shell}
+set -eu
+d=`mktemp --suffix .png`
+trap "rm '$d'" exit
+sleep .2
+${scrot}/bin/scrot --quality 100 "$@" "$d"
+${xclip}/bin/xclip -selection c -t image/png < "$d"
+''
