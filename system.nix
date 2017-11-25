@@ -142,9 +142,7 @@
 
       ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"
       ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
-      ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
     '';
-    upower.enable = true;
     xserver = {
       displayManager.sddm.enable = true;
       enable = true;
