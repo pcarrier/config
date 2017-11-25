@@ -61,5 +61,7 @@ buildEnv {
     vim
     wget
     zip
+    # because monorepo
+    python gcc
   ];
 }
