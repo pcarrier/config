@@ -124,6 +124,11 @@
   services = {
     acpid.enable = true;
     locate.enable = true;
+    logind.extraConfig = ''
+      HandlePowerKey=ignore
+      HandeSuspendKey=ignore
+      HandleHibernateKey=ignore
+    '';
     nscd.enable = false;
     openssh = {
       authorizedKeysFiles = [ ".ssh/authorized_keys" ];
