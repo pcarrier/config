@@ -8,13 +8,17 @@
       "fs.inotify.max_queued_events" = 32768;
       "vm.dirty_writeback_centisecs" = 6000;
     };
-    kernelPackages = pkgs.kernelPackages;
+    kernelPackages = pkgs.linuxPackages_4_13;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
+    # zfs.enableUnstable = true;
+    extraModprobeConfig = ''
+      options snd_hda_intel power_save=1
+    '';
   };
   environment.systemPackages = with pkgs; [
     coreutils
@@ -53,8 +57,6 @@
       antialias = true;
       # dpi = 200;
       enable = true;
-      # penultimate.enable = true;
-      # subpixel.lcdfilter = "none";
     };
   };
   networking = {
@@ -137,6 +139,10 @@
     udev.extraRules =
     ''
       SUBSYSTEM=="net", ATTR{address}=="44:1c:a8:e4:09:af", NAME="wl0"
+
+      ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"
+      ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
+      ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
     '';
     upower.enable = true;
     xserver = {

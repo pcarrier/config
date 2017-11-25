@@ -36,6 +36,7 @@ buildEnv {
     mpv
     nix-prefetch-scripts
     nix-repl
+    nsjail
     nzbget
     oraclejdk8
     oxygen-icons5
@@ -60,6 +61,7 @@ buildEnv {
     visualvm
     vim
     wget
+    xorg.xev
     zip
     # because monorepo
     python gcc

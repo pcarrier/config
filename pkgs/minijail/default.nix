@@ -17,6 +17,7 @@ stdenv.mkDerivation rec {
 
   preConfigure = ''
     substituteInPlace common.mk --replace /bin/echo echo
+    sed -i '/#include <asm\/siginfo.h>/ d' signal_handler.c
   '';
 
   installPhase = ''
