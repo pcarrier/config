@@ -159,7 +159,6 @@
       xkbOptions = "ctrl:nocaps";
       windowManager.i3.enable = true;
     };
-    zfs.autoSnapshot.enable = true;
     znapzend = {
       autoCreation = true;
       enable = true;
