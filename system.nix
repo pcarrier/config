@@ -83,6 +83,7 @@
   };
   nix = {
     gc.automatic = false;
+    package = pkgs.nixUnstable;
     readOnlyStore = true;
     useSandbox = true;
     maxJobs = lib.mkDefault 8;
@@ -124,11 +125,15 @@
   services = {
     acpid.enable = true;
     locate.enable = true;
-    logind.extraConfig = ''
-      HandlePowerKey=ignore
-      HandeSuspendKey=ignore
-      HandleHibernateKey=ignore
-    '';
+    logind = {
+      lidSwitch = "ignore";
+      lidSwitchDocked = "ignore";
+      extraConfig = ''
+        HandlePowerKey=ignore
+        HandeSuspendKey=ignore
+        HandleHibernateKey=ignore
+      '';
+    };
     nscd.enable = false;
     openssh = {
       authorizedKeysFiles = [ ".ssh/authorized_keys" ];
