@@ -32,6 +32,7 @@
     enableAllFirmware = true;
     opengl.driSupport = true;
     pulseaudio.enable = true;
+    u2f.enable = true;
   };
   fileSystems = {
     "/boot" = { device = "/dev/disk/by-uuid/AECD-170A"; fsType = "vfat"; };
@@ -39,6 +40,8 @@
     "/var/lib/docker/zfs" = { device = "dell/root/docker"; fsType = "zfs"; };
     "/home" = { device = "dell/data/home"; fsType = "zfs"; };
     "/home/repos" = { device = "dell/data/repos"; fsType = "zfs"; };
+    "/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
+    "/var/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
   };
   fonts = {
     enableCoreFonts = true;

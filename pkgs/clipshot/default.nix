@@ -1,9 +1,9 @@
-{ stdenv, writeScriptBin, scrot, xclip }:
+{ stdenv, writeScriptBin, coreutils, scrot, xclip }:
 
 writeScriptBin "clipshot" ''
 #!${stdenv.shell}
 set -eu
-d=`mktemp --suffix .png`
+d=`${coreutils}/bin/mktemp --suffix .png`
 trap "rm '$d'" exit
 sleep .2
 ${scrot}/bin/scrot --quality 100 "$@" "$d"
