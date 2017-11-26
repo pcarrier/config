@@ -89,8 +89,7 @@
     maxJobs = lib.mkDefault 8;
     nixPath = [
       "nixos-config=/home/repos/config/system.nix"
-      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
-      "/nix/var/nix/profiles/per-user/root/channels"
+      "nixpkgs=/home/repos/nixpkgs"
     ];
   };
   nixpkgs = {
