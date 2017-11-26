@@ -66,10 +66,6 @@
     enableB43Firmware = true;
     enableIPv6 = false;
     extraHosts = "127.0.0.1 pcarrier-dell";
-    firewall = {
-      allowedTCPPorts = [ 22 ];
-      allowPing = true;
-    };
     hostId = "310491f9";
     hostName = "pcarrier-dell";
     networkmanager.enable = true;
@@ -105,7 +101,8 @@
     enable = true;
   };
   programs = {
-    mtr.enable = true;
+    mosh.enable = true; # for UDP firewall
+    mtr.enable = true; # SUID
     ssh = {
       startAgent = true;
       extraConfig =

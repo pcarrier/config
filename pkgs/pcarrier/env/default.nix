@@ -64,7 +64,5 @@ buildEnv {
     xclip
     xorg.xev
     zip
-    # because monorepo
-    direnv gcc patchelf python
   ];
 }
