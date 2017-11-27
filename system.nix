@@ -8,17 +8,17 @@
       "fs.inotify.max_queued_events" = 32768;
       "vm.dirty_writeback_centisecs" = 6000;
     };
-    kernelPackages = pkgs.linuxPackages_4_13;
+    kernelPackages = pkgs.linuxPackages_4_14;
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    # zfs.enableUnstable = true;
     extraModprobeConfig = ''
       options snd_hda_intel power_save=1
     '';
+    zfs.enableUnstable = true;
   };
   environment.systemPackages = with pkgs; [
     coreutils
