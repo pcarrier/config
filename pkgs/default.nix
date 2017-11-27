@@ -1,6 +1,7 @@
 self: super:
 {
   baze = super.callPackage ./baze { };
+  fhsjail = super.callPackage ./fhsjail { };
   kernelPackages = super.linuxPackages_4_13;
   minijail = super.callPackage ./minijail { };
   mpv = super.mpv.override { vapoursynthSupport = true; };
