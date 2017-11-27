@@ -4,6 +4,8 @@ stdenv.mkDerivation rec {
   name = "baze-${version}";
   version = "1.0";
 
+  buildInputs = [ ruby ];
+
   src = fetchgit {
     url = "https://github.com/pcarrier/baze";
     rev = "32255c802a70f706c84a2b419e5589433de15afc";
