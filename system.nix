@@ -39,7 +39,7 @@
     "/" = { device = "dell/root/default"; fsType = "zfs"; };
     "/var/lib/docker/zfs" = { device = "dell/root/docker"; fsType = "zfs"; };
     "/home" = { device = "dell/data/home"; fsType = "zfs"; };
-    "/home/repos" = { device = "dell/data/repos"; fsType = "zfs"; };
+    "/repos" = { device = "dell/data/repos"; fsType = "zfs"; };
     "/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
     "/var/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
   };
@@ -88,8 +88,8 @@
     useSandbox = true;
     maxJobs = lib.mkDefault 8;
     nixPath = [
-      "nixos-config=/home/repos/config/system.nix"
-      "nixpkgs=/home/repos/nixpkgs"
+      "nixos-config=/repos/config/system.nix"
+      "nixpkgs=/repos/nixpkgs"
     ];
   };
   nixpkgs = {
