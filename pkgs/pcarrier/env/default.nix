@@ -27,6 +27,7 @@ buildEnv {
     iotop
     jq
     lastpass-cli
+    ldns
     libarchive
     ltrace
     manpages
