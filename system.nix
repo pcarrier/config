@@ -21,6 +21,8 @@
     zfs.enableUnstable = true;
   };
   environment.systemPackages = with pkgs; [
+    breeze-qt5
+    breeze-icons
     coreutils
     kernelPackages.perf
     powertop
@@ -169,7 +171,10 @@
       ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
     '';
     xserver = {
-      displayManager.sddm.enable = true;
+      displayManager.sddm = {
+        enable = true;
+        theme = "breeze";
+      };
       enable = true;
       layout = "us";
       libinput = {

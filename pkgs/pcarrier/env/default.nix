@@ -7,6 +7,7 @@ buildEnv {
     alacritty
     aria2
     baze
+    breeze-gtk breeze-qt5 breeze-icons
     dash
     calligra
     clipshot
@@ -21,7 +22,7 @@ buildEnv {
     gitAndTools.gitFull
     gitAndTools.hub
     glxinfo
-    gnome3.adwaita-icon-theme
+    # gnome3.adwaita-icon-theme
     google-chrome
     haskellPackages.greenclip
     htop
