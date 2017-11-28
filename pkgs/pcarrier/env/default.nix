@@ -8,6 +8,7 @@ buildEnv {
     aria2
     baze
     dash
+    calligra
     clipshot
     coreutils
     ctags
@@ -25,8 +26,10 @@ buildEnv {
     haskellPackages.greenclip
     htop
     idea.idea-ultimate
+    iftop
     iotop
     jq
+    krita
     lastpass-cli
     ldns
     libarchive
@@ -36,12 +39,15 @@ buildEnv {
     mosh
     most
     mpv
+    ncdu
     nix-prefetch-scripts
     nix-repl
     nsjail
     nzbget
+    okular
     oraclejdk8
     oxygen-icons5
+    paprefs
     pavucontrol
     posix_man_pages
     powertop
@@ -65,7 +71,9 @@ buildEnv {
     virtmanager
     wget
     xclip
+    xlibs.xkill
     xorg.xev
+    xorg.xrandr
     zip
     direnv gcc python # because monorepo
   ];
