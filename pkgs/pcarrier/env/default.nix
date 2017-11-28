@@ -22,6 +22,7 @@ buildEnv {
     glxinfo
     gnome3.adwaita-icon-theme
     google-chrome
+    haskellPackages.greenclip
     htop
     idea.idea-ultimate
     iotop
