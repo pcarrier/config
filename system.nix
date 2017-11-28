@@ -21,8 +21,7 @@
     zfs.enableUnstable = true;
   };
   environment.systemPackages = with pkgs; [
-    breeze-qt5
-    breeze-icons
+    breeze-gtk breeze-qt5 breeze-icons gnome3.adwaita-icon-theme hicolor_icon_theme
     coreutils
     kernelPackages.perf
     powertop
@@ -105,6 +104,7 @@
   programs = {
     mosh.enable = true; # for UDP firewall
     mtr.enable = true; # SUID
+    qt5ct.enable = true;
     ssh = {
       startAgent = true;
       extraConfig =
