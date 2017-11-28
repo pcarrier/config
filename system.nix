@@ -178,6 +178,7 @@
         "audio"
         "disk"
         "docker"
+        "libvirtd"
         "networkmanager"
         "systemd-journal"
         "video"
@@ -190,8 +191,11 @@
     };
     defaultUserShell = "/run/current-system/sw/bin/zsh";
   };
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "zfs";
+  virtualisation = {
+    docker = {
+      enable = true;
+      storageDriver = "zfs";
+    };
+    libvirtd.enable = true;
   };
 }

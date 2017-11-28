@@ -62,6 +62,7 @@ buildEnv {
     unzip
     visualvm
     vim
+    virtmanager
     wget
     xclip
     xorg.xev
