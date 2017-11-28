@@ -152,6 +152,14 @@
       # Toronto
       latitude = "43.6532";
       longitude = "-79.3832";
+      temperature = {
+        day = 5700;
+        night = 3500;
+      };
+      brightness = {
+        day = "1.0";
+        night = "0.7";
+      };
     };
     udev.extraRules =
     ''
