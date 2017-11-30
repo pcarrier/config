@@ -41,7 +41,7 @@
   fileSystems = {
     "/boot" = { device = "/dev/disk/by-uuid/AECD-170A"; fsType = "vfat"; };
     "/" = { device = "dell/root/default"; fsType = "zfs"; };
-    "/var/lib/docker/zfs" = { device = "dell/root/docker"; fsType = "zfs"; };
+    "/var/lib/docker" = { device = "dell/root/docker"; fsType = "zfs"; };
     "/home" = { device = "dell/data/home"; fsType = "zfs"; };
     "/repos" = { device = "dell/data/repos"; fsType = "zfs"; };
     "/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
