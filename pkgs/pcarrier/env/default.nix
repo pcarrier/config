@@ -7,6 +7,7 @@ buildEnv {
     alacritty
     aria2
     baze
+    bc
     dash
     calligra
     clipshot
