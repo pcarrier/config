@@ -32,7 +32,10 @@
     cpu.intel.updateMicrocode = true;
     enableAllFirmware = true;
     opengl.driSupport = true;
-    pulseaudio.enable = true;
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull; # for Bluetooth
+    };
     u2f.enable = true;
   };
   fileSystems = {
@@ -107,8 +110,7 @@
     qt5ct.enable = true;
     ssh = {
       startAgent = true;
-      extraConfig =
-      ''
+      extraConfig = ''
         StrictHostKeyChecking=no
       '';
     };
@@ -163,8 +165,7 @@
         night = "0.7";
       };
     };
-    udev.extraRules =
-    ''
+    udev.extraRules = ''
       SUBSYSTEM=="net", ATTR{address}=="44:1c:a8:e4:09:af", NAME="wl0"
 
       ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"
