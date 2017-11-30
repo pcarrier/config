@@ -14,6 +14,7 @@ buildEnv {
     ctags
     dfc
     direnv
+    dmidecode
     dolphin
     ffmpeg
     file
@@ -54,12 +55,16 @@ buildEnv {
     rofi
     rsync
     rtorrent
+    ruby
     scrot
+    skype
     slack
+    socat
     spotify
     sshfs-fuse
     strace
     sublime3
+    sysstat
     tig
     tmux
     tree
@@ -69,11 +74,13 @@ buildEnv {
     vim
     virtmanager
     wget
+    wireshark-qt
     xclip
     xlibs.xkill
     xorg.xev
     xorg.xrandr
     xsettingsd
+    whois
     zip
     direnv gcc python # because monorepo
   ];
