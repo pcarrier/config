@@ -17,6 +17,7 @@
     supportedFilesystems = [ "zfs" ];
     extraModprobeConfig = ''
       options snd_hda_intel power_save=1
+      options zfs.zfs_arc_max=8589934592;
     '';
     zfs.enableUnstable = true;
   };
@@ -40,10 +41,10 @@
   };
   fileSystems = {
     "/boot" = { device = "/dev/disk/by-uuid/AECD-170A"; fsType = "vfat"; };
-    "/" = { device = "dell/root/default"; fsType = "zfs"; };
-    "/var/lib/docker" = { device = "dell/root/docker"; fsType = "zfs"; };
+    "/" = { device = "dell/root"; fsType = "zfs"; };
     "/home" = { device = "dell/data/home"; fsType = "zfs"; };
-    "/repos" = { device = "dell/data/repos"; fsType = "zfs"; };
+    #"/repos" = { device = "dell/repos"; fsType = "zfs"; };
+    #"/var/lib/docker" = { device = "dell/docker"; fsType = "zfs"; };
     "/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
     "/var/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
   };
@@ -70,6 +71,7 @@
     enableB43Firmware = true;
     enableIPv6 = false;
     extraHosts = "127.0.0.1 pcarrier-dell";
+    firewall.allowedTCPPorts = [ 32400 ];
     hostId = "310491f9";
     hostName = "pcarrier-dell";
     networkmanager.enable = true;
@@ -97,7 +99,10 @@
     ];
   };
   nixpkgs = {
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+      pulseaudio = true;
+    };
     overlays = [ (import ./pkgs) ];
   };
   powerManagement = {
@@ -150,7 +155,9 @@
       authorizedKeysFiles = [ ".ssh/authorized_keys" ];
       enable = true;
       passwordAuthentication = false;
+      startWhenNeeded = true;
     };
+    plex.enable = true;
     redshift = {
       enable = true;
       # Toronto
@@ -165,6 +172,7 @@
         night = "0.7";
       };
     };
+    thermald.enable = true;
     udev.extraRules = ''
       SUBSYSTEM=="net", ATTR{address}=="44:1c:a8:e4:09:af", NAME="wl0"
 
@@ -205,6 +213,9 @@
         "systemd-journal"
         "video"
         "wheel"
+      ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDZ73DWvqvQNUr14LO6ha6hLKacwXOfkAgA0G8+dC/48"
       ];
       group = "users";
       isNormalUser = true;
