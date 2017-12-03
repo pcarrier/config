@@ -8,7 +8,6 @@
     supportedFilesystems = [ "zfs" ];
     zfs.enableUnstable = true;
   };
-  nix.package = pkgs.nixUnstable;
   services.openssh = {
     enable = true;
     startWhenNeeded = true;

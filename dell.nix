@@ -9,7 +9,16 @@
       "vm.dirty_writeback_centisecs" = 6000;
     };
     kernelPackages = pkgs.linuxPackages_4_14;
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
+      luks.devices = [
+        {
+          allowDiscards = true;
+          device = "/dev/nvme0n1p2";
+          name = "dell";
+        }
+      ];
+    };
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -24,7 +33,7 @@
   environment.systemPackages = with pkgs; [
     breeze-gtk breeze-qt5 breeze-icons gnome3.adwaita-icon-theme hicolor_icon_theme
     coreutils
-    kernelPackages.perf
+    linuxPackages_4_14.perf
     powertop
   ];
   hardware = {
@@ -40,11 +49,11 @@
     u2f.enable = true;
   };
   fileSystems = {
-    "/boot" = { device = "/dev/disk/by-uuid/AECD-170A"; fsType = "vfat"; };
-    "/" = { device = "dell/root"; fsType = "zfs"; };
-    "/home" = { device = "dell/data/home"; fsType = "zfs"; };
-    #"/repos" = { device = "dell/repos"; fsType = "zfs"; };
-    #"/var/lib/docker" = { device = "dell/docker"; fsType = "zfs"; };
+    "/boot" = { device = "/dev/disk/by-label/EFI"; fsType = "vfat"; };
+    "/" = { device = "tank/root"; fsType = "zfs"; };
+    "/repos" = { device = "tank/repos"; fsType = "zfs"; };
+    "/var/lib/docker" = { device = "tank/docker"; fsType = "zfs"; };
+    "/home" = { device = "tank/home"; fsType = "zfs"; };
     "/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
     "/var/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
   };
@@ -94,7 +103,7 @@
     useSandbox = true;
     maxJobs = lib.mkDefault 8;
     nixPath = [
-      "nixos-config=/repos/config/system.nix"
+      "nixos-config=/repos/config/dell.nix"
       "nixpkgs=/repos/nixpkgs"
     ];
   };
@@ -175,6 +184,8 @@
     thermald.enable = true;
     udev.extraRules = ''
       SUBSYSTEM=="net", ATTR{address}=="44:1c:a8:e4:09:af", NAME="wl0"
+      SUBSYSTEM=="net", ATTR{address}=="00:50:b6:21:47:96", NAME="us0"
+      SUBSYSTEM=="net", ATTR{address}=="2c:56:dc:48:1c:e9", NAME="ws0"
 
       ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"
       ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"

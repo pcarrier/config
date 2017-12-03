@@ -1,7 +1,6 @@
 self: super:
 {
   baze = super.callPackage ./baze { };
-  kernelPackages = super.linuxPackages_4_13;
   minijail = super.callPackage ./minijail { };
   monorepoenv = super.callPackage ./monorepoenv { };
   mpv = super.mpv.override { vapoursynthSupport = true; };
