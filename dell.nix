@@ -83,7 +83,7 @@
     enableIPv6 = false;
     extraHosts = "127.0.0.1 pcarrier-dell";
     firewall.allowedTCPPorts = [ 32400 ];
-    hostId = "310491f9";
+    hostId = "9f194013";
     hostName = "pcarrier-dell";
     networkmanager.enable = true;
   };
