@@ -17,6 +17,7 @@ buildEnv {
     direnv
     dmidecode
     dolphin
+    ethtool
     ffmpeg
     file
     fzf
@@ -29,6 +30,7 @@ buildEnv {
     idea.idea-ultimate
     iftop
     iotop
+    iperf
     jq
     krita
     lastpass-cli
@@ -50,6 +52,7 @@ buildEnv {
     oxygen-icons5
     paprefs
     pavucontrol
+    plex
     posix_man_pages
     powertop
     rclone
