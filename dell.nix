@@ -8,6 +8,7 @@
       "fs.inotify.max_queued_events" = 32768;
       "vm.dirty_writeback_centisecs" = 6000;
     };
+    kernelModules = [ "coretemp" ];
     kernelPackages = pkgs.linuxPackages_4_14;
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
