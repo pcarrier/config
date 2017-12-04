@@ -136,6 +136,7 @@
     acpid.enable = true;
     avahi = {
       enable = true;
+      nssmdns = true;
       ipv6 = false;
     };
     chrony = {
@@ -152,7 +153,6 @@
         HandleHibernateKey=ignore
       '';
     };
-    nscd.enable = false;
     openssh = {
       enable = true;
       passwordAuthentication = false;
