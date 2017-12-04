@@ -32,7 +32,6 @@
   ];
   hardware = {
     bluetooth.enable = true;
-    bumblebee.enable = true;
     cpu.intel.updateMicrocode = true;
     enableAllFirmware = true;
     opengl.driSupport = true;
