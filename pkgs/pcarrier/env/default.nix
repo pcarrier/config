@@ -37,6 +37,7 @@ buildEnv {
     lastpass-cli
     ldns
     libarchive
+    lm_sensors
     ltrace
     manpages
     minijail
