@@ -173,7 +173,6 @@
         night = "0.7";
       };
     };
-    thermald.enable = true;
     udev.extraRules = ''
       SUBSYSTEM=="net", ATTR{address}=="44:1c:a8:e4:09:af", NAME="wl0"
       SUBSYSTEM=="net", ATTR{address}=="00:50:b6:21:47:96", NAME="us0"
