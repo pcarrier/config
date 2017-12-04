@@ -49,13 +49,14 @@
     u2f.enable = true;
   };
   fileSystems = {
-    "/boot" = { device = "/dev/disk/by-label/EFI"; fsType = "vfat"; };
     "/" = { device = "tank/root"; fsType = "zfs"; };
+    "/boot" = { device = "/dev/disk/by-label/EFI"; fsType = "vfat"; };
+    "/downloads" = { device = "tank/downloads"; fsType = "zfs"; };
+    "/home" = { device = "tank/home"; fsType = "zfs"; };
     "/repos" = { device = "tank/repos"; fsType = "zfs"; };
     "/var/lib/docker" = { device = "tank/docker"; fsType = "zfs"; };
-    "/home" = { device = "tank/home"; fsType = "zfs"; };
-    "/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
     "/var/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
+    "/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
   };
   fonts = {
     enableCoreFonts = true;
