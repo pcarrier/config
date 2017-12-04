@@ -95,7 +95,7 @@
     useSandbox = true;
     maxJobs = lib.mkDefault 8;
     nixPath = [
-      "nixos-config=/repos/config/dell.nix"
+      "nixos-config=/repos/config/workstation.nix"
       "nixpkgs=/repos/nixpkgs"
     ];
   };
