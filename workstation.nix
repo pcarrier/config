@@ -11,13 +11,6 @@
     kernelPackages = pkgs.linuxPackages_4_14;
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
-      luks.devices = [
-        {
-          allowDiscards = true;
-          device = "/dev/nvme0n1p2";
-          name = "dell";
-        }
-      ];
     };
     loader = {
       systemd-boot.enable = true;
@@ -80,16 +73,14 @@
   networking = {
     enableB43Firmware = true;
     enableIPv6 = false;
-    extraHosts = "127.0.0.1 pcarrier-dell";
+    extraHosts = "127.0.0.1 pcarrier-workstation";
     firewall.allowedTCPPorts = [ 32400 ];
     hostId = "310491f9";
-    hostName = "pcarrier-dell";
+    hostName = "pcarrier-workstation";
     networkmanager.enable = true;
   };
   i18n = {
-    consoleFont = "ter-v32n";
     consoleKeyMap = "us";
-    consolePackages = [ pkgs.terminus_font ];
     defaultLocale = "en_CA.UTF-8";
     supportedLocales = [
       "en_CA.UTF-8/UTF-8"
