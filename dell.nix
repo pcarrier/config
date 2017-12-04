@@ -146,6 +146,10 @@
     avahi = {
       enable = true;
       nssmdns = true;
+      publish = {
+        enable = true;
+        addresses = true;
+      };
       ipv6 = false;
     };
     chrony = {
