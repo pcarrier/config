@@ -155,6 +155,7 @@
     };
     openssh = {
       enable = true;
+      forwardX11 = true;
       passwordAuthentication = false;
       startWhenNeeded = true;
     };
