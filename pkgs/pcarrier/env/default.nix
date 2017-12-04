@@ -12,6 +12,7 @@ buildEnv {
     calligra
     clipshot
     coreutils
+    cpufrequtils
     ctags
     dfc
     direnv

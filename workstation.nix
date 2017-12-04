@@ -107,7 +107,7 @@
     overlays = [ (import ./pkgs) ];
   };
   powerManagement = {
-    cpuFreqGovernor = "ondemand";
+    cpuFreqGovernor = "powersave";
     enable = true;
   };
   programs = {
