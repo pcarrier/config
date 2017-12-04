@@ -34,6 +34,7 @@
     breeze-gtk breeze-qt5 breeze-icons gnome3.adwaita-icon-theme hicolor_icon_theme
     coreutils
     linuxPackages_4_14.perf
+    mbuffer
     powertop
   ];
   hardware = {
