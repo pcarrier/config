@@ -2,6 +2,8 @@
 {
   boot = {
     blacklistedKernelModules = [ "snd_pcsp" "pcspkr" ];
+    extraKernelParams = [ "zfs.zfs_arc_max=8589934592" ];
+    extraModulePackages = [ pkgs.linuxPackages_4_14.nvidia_x11 ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
       "fs.inotify.max_user_instances" = 1024;
@@ -19,7 +21,6 @@
     supportedFilesystems = [ "zfs" ];
     extraModprobeConfig = ''
       options snd_hda_intel power_save=1
-      options zfs.zfs_arc_max=8589934592;
     '';
     zfs.enableUnstable = true;
   };
@@ -46,6 +47,7 @@
     "/boot" = { device = "/dev/disk/by-label/EFI"; fsType = "vfat"; };
     "/downloads" = { device = "tank/downloads"; fsType = "zfs"; };
     "/home" = { device = "tank/home"; fsType = "zfs"; };
+    "/home/.cache" = { device = "tank/home/.cache"; fsType = "zfs"; };
     "/repos" = { device = "tank/repos"; fsType = "zfs"; };
     "/var/lib/docker" = { device = "tank/docker"; fsType = "zfs"; };
     "/var/tmp" = { device = "tmpfs" ; fsType = "tmpfs"; };
