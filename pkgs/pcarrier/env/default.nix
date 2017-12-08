@@ -5,7 +5,9 @@ buildEnv {
   paths = with pkgs; [
     acpi
     alacritty
+    apache-maven
     aria2
+    audacity
     baze
     bc
     dash
@@ -21,11 +23,13 @@ buildEnv {
     ethtool
     ffmpeg
     file
+    firefox
     fzf
     gitAndTools.gitFull
     gitAndTools.hub
     glxinfo
     google-chrome
+    gradle
     haskellPackages.greenclip
     htop
     idea.idea-ultimate
@@ -53,6 +57,7 @@ buildEnv {
     oraclejdk8
     oxygen-icons5
     paprefs
+    patchelf
     pavucontrol
     plex
     posix_man_pages
@@ -87,6 +92,7 @@ buildEnv {
     xorg.xrandr
     xsettingsd
     whois
+    wine
     zip
     direnv gcc python # because monorepo
   ];
