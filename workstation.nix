@@ -2,7 +2,6 @@
 {
   boot = {
     blacklistedKernelModules = [ "snd_pcsp" "pcspkr" ];
-    extraKernelParams = [ "zfs.zfs_arc_max=8589934592" ];
     extraModulePackages = [ pkgs.linuxPackages_4_14.nvidia_x11 ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
@@ -11,6 +10,7 @@
       "vm.dirty_writeback_centisecs" = 6000;
     };
     kernelPackages = pkgs.linuxPackages_4_14;
+    kernelParams = [ "zfs.zfs_arc_max=8589934592" ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
     };
