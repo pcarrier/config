@@ -5,7 +5,6 @@ buildEnv {
   paths = with pkgs; [
     acpi
     alacritty
-    apache-maven
     aria2
     audacity
     baze
@@ -44,6 +43,7 @@ buildEnv {
     lm_sensors
     ltrace
     manpages
+    maven
     minijail
     mosh
     most
