@@ -42,6 +42,7 @@ buildEnv {
     libarchive
     lm_sensors
     ltrace
+    lxqt.pavucontrol-qt
     manpages
     maven
     minijail
@@ -58,7 +59,7 @@ buildEnv {
     oxygen-icons5
     paprefs
     patchelf
-    pavucontrol
+    #pavucontrol
     plex
     posix_man_pages
     powertop

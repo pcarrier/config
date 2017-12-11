@@ -2,7 +2,6 @@
 {
   boot = {
     blacklistedKernelModules = [ "snd_pcsp" "pcspkr" ];
-    extraModulePackages = [ pkgs.linuxPackages_4_14.nvidia_x11 ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
       "fs.inotify.max_user_instances" = 1024;
@@ -20,6 +19,7 @@
     };
     supportedFilesystems = [ "zfs" ];
     extraModprobeConfig = ''
+      options hid_apple fnmode=2
       options snd_hda_intel power_save=1
     '';
     zfs.enableUnstable = true;
@@ -68,7 +68,6 @@
     ];
     fontconfig = {
       antialias = true;
-      # dpi = 200;
       enable = true;
     };
   };
@@ -192,12 +191,14 @@
         enable = true;
         theme = "breeze";
       };
+      dpi = 120;
       enable = true;
       layout = "us";
       libinput = {
         enable = true;
         naturalScrolling = true;
       };
+      videoDrivers = [ "nvidia" ];
       xkbOptions = "ctrl:nocaps";
       windowManager.i3.enable = true;
     };

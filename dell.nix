@@ -28,6 +28,7 @@
     };
     supportedFilesystems = [ "zfs" ];
     extraModprobeConfig = ''
+      options hid_apple fnmode=2
       options snd_hda_intel power_save=1
     '';
     zfs.enableUnstable = true;
@@ -203,6 +204,7 @@
         enable = true;
         theme = "breeze";
       };
+      dpi = 120;
       enable = true;
       layout = "us";
       libinput = {
