@@ -5,6 +5,7 @@ buildEnv {
   paths = with pkgs; [
     acpi
     alacritty
+    ardour
     aria2
     audacity
     baze
@@ -63,13 +64,14 @@ buildEnv {
     plex
     posix_man_pages
     powertop
+    qjackctl
     rclone
     rofi
     rsync
     rtorrent
     ruby
     scrot
-    skype
+    #skype
     slack
     socat
     spotify
@@ -79,6 +81,7 @@ buildEnv {
     sysstat
     tig
     tmux
+    tokei
     tree
     unrar
     unzip

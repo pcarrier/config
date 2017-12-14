@@ -27,6 +27,7 @@
   environment.systemPackages = with pkgs; [
     breeze-gtk breeze-qt5 breeze-icons gnome3.adwaita-icon-theme hicolor_icon_theme
     coreutils
+    jack2Full
     linuxPackages_4_14.perf
     mbuffer
     powertop
@@ -38,7 +39,7 @@
     opengl.driSupport = true;
     pulseaudio = {
       enable = true;
-      package = pkgs.pulseaudioFull; # for Bluetooth
+      package = pkgs.pulseaudioFull; # for Bluetooth & jack
     };
     u2f.enable = true;
   };
@@ -130,6 +131,12 @@
   };
   security = {
     rtkit.enable = true;
+    pam.loginLimits = [
+      { domain = "@audio"; item = "memlock"; type = "-"   ; value = "unlimited"; }
+      { domain = "@audio"; item = "rtprio" ; type = "-"   ; value = "99"       ; }
+      { domain = "@audio"; item = "nofile" ; type = "soft"; value = "99999"    ; }
+      { domain = "@audio"; item = "nofile" ; type = "hard"; value = "99999"    ; }
+    ];
     sudo.wheelNeedsPassword = false;
   };
   services = {
