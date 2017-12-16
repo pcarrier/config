@@ -11,7 +11,11 @@
     };
     kernelModules = [ "coretemp" ];
     kernelPackages = pkgs.linuxPackages_4_14;
-    kernelParams = [ "zfs.zfs_arc_max=8589934592" ];
+    kernelParams = [
+      "hid_apple.fnmode=2"
+      "snd_hda_intel.power_save=1"
+      "zfs.zfs_arc_max=8589934592"
+    ];
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
       luks.devices = [
@@ -27,10 +31,6 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    extraModprobeConfig = ''
-      options hid_apple fnmode=2
-      options snd_hda_intel power_save=1
-    '';
     zfs.enableUnstable = true;
   };
   environment.systemPackages = with pkgs; [
