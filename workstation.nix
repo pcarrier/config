@@ -76,7 +76,7 @@
     enableB43Firmware = true;
     enableIPv6 = false;
     extraHosts = "127.0.0.1 pcarrier-workstation";
-    firewall.allowedTCPPorts = [ 32400 ];
+    firewall.allowedTCPPorts = [ 32400 32469 ];
     hostId = "310491f9";
     hostName = "pcarrier-workstation";
     networkmanager.enable = true;
