@@ -5,7 +5,7 @@ stdenv.mkDerivation rec {
 	src = requireFile {
 		name = "PragmataPro${version}.zip";
 		sha256 = "0r7xmk6npavda6772lcm47c60gh7yzgias7y05yf4r168p8dmd0c";
-		message = "Download upstream and import with nix-prefetch-url";
+		message = "Run $ nix-store --add-fixed sha256 /downloads/PragmataPro0.826.zip";
 	};
 	buildInputs = [ unzip ];
 	phases = [ "installPhase" ];
