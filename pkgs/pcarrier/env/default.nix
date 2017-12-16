@@ -5,7 +5,7 @@ buildEnv {
   paths = with pkgs; [
     acpi
     alacritty
-    ardour
+    #ardour
     aria2
     audacity
     baze
