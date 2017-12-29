@@ -1,0 +1,4 @@
+znapzendzetup create --recursive --mbuffer=/mbuffer \
+   --mbuffersize=1G --tsformat='%Y-%m-%dT%H:%M:%S' \
+   SRC '2h=>15m,1d=>1h,7d=>1d' tank/home \
+   DST:workstation '1d=>15m,7d=>1h,30d=>4h,1y->1d,10y->4w' tank/home

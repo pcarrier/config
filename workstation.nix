@@ -1,7 +1,6 @@
 {config, lib, pkgs, ...}:
 {
   boot = {
-    blacklistedKernelModules = [ "snd_pcsp" "pcspkr" ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
       "fs.inotify.max_user_instances" = 1024;
@@ -62,7 +61,8 @@
       dejavu_fonts
       emojione
       font-droid
-      pkgs.pragmatapro
+      pragmatapro
+      tflfonts
       noto-fonts
       noto-fonts-emoji
       ubuntu_font_family

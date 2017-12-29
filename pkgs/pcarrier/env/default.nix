@@ -44,6 +44,7 @@ buildEnv {
     lm_sensors
     ltrace
     lxqt.pavucontrol-qt
+    lzip
     manpages
     maven
     minijail
@@ -53,6 +54,7 @@ buildEnv {
     ncdu
     nix-prefetch-scripts
     nix-repl
+    nodejs-8_x
     nsjail
     nzbget
     okular
@@ -62,6 +64,7 @@ buildEnv {
     patchelf
     #pavucontrol
     plex
+    poppler_utils
     posix_man_pages
     powertop
     qjackctl
@@ -76,6 +79,7 @@ buildEnv {
     socat
     spotify
     sshfs-fuse
+    steam
     strace
     sublime3
     sysstat
@@ -97,6 +101,7 @@ buildEnv {
     xsettingsd
     whois
     wine
+    yarn
     zip
     direnv gcc python # because monorepo
   ];

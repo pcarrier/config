@@ -1,7 +1,6 @@
 {config, lib, pkgs, ...}:
 {
   boot = {
-    blacklistedKernelModules = [ "snd_pcsp" "pcspkr" ];
     extraModulePackages = [ pkgs.linuxPackages_4_14.nvidia_x11 ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
@@ -45,7 +44,10 @@
     bumblebee.enable = true;
     cpu.intel.updateMicrocode = true;
     enableAllFirmware = true;
-    opengl.driSupport = true;
+    opengl = {
+      driSupport = true;
+      driSupport32Bit = true;
+    };
     pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull; # for Bluetooth
@@ -71,7 +73,8 @@
       dejavu_fonts
       emojione
       font-droid
-      pkgs.pragmatapro
+      pragmatapro
+      tflfonts
       noto-fonts
       noto-fonts-emoji
       ubuntu_font_family
@@ -86,7 +89,7 @@
     enableB43Firmware = true;
     enableIPv6 = false;
     extraHosts = "127.0.0.1 pcarrier-dell";
-    firewall.allowedTCPPorts = [ 32400 32469 ];
+    firewall.allowedTCPPorts = [ 80 443 32400 32469 ];
     hostId = "9f194013";
     hostName = "pcarrier-dell";
     networkmanager.enable = true;
