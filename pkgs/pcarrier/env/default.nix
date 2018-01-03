@@ -18,6 +18,7 @@ buildEnv {
     ctags
     dfc
     direnv
+    displays
     dmidecode
     dolphin
     ethtool
@@ -103,6 +104,7 @@ buildEnv {
     wine
     yarn
     zip
+    zoom-us
     direnv gcc python # because monorepo
   ];
 }
