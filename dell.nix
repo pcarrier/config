@@ -241,6 +241,7 @@
         "libvirtd"
         "networkmanager"
         "systemd-journal"
+        "vboxusers"
         "video"
         "wheel"
       ];
@@ -260,5 +261,6 @@
       storageDriver = "zfs";
     };
     libvirtd.enable = true;
+    virtualbox.host.enable = true;
   };
 }

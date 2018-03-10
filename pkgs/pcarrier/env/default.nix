@@ -75,7 +75,7 @@ buildEnv {
     rtorrent
     ruby
     scrot
-    #skype
+    skype
     slack
     socat
     spotify
@@ -83,6 +83,7 @@ buildEnv {
     steam
     strace
     sublime3
+    signal-desktop
     sysstat
     tig
     tmux
