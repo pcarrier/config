@@ -5,13 +5,12 @@ buildEnv {
   paths = with pkgs; [
     acpi
     alacritty
-    #ardour
     aria2
     audacity
     baze
     bc
     dash
-    calligra
+    #calligra
     clipshot
     coreutils
     cpufrequtils
@@ -29,8 +28,7 @@ buildEnv {
     gitAndTools.gitFull
     gitAndTools.hub
     glxinfo
-    google-chrome
-    gradle
+    #google-chrome
     haskellPackages.greenclip
     htop
     idea.idea-ultimate
@@ -38,7 +36,7 @@ buildEnv {
     iotop
     iperf
     jq
-    krita
+    #krita
     lastpass-cli
     ldns
     libarchive
@@ -55,7 +53,7 @@ buildEnv {
     ncdu
     nix-prefetch-scripts
     nix-repl
-    nodejs-8_x
+    nodejs
     nsjail
     nzbget
     okular
@@ -63,8 +61,7 @@ buildEnv {
     oxygen-icons5
     paprefs
     patchelf
-    #pavucontrol
-    plex
+    #plex
     poppler_utils
     posix_man_pages
     powertop
@@ -75,12 +72,12 @@ buildEnv {
     rtorrent
     ruby
     scrot
-    skype
+    #skype
     slack
     socat
-    spotify
+    #spotify
     sshfs-fuse
-    steam
+    #steam
     strace
     sublime3
     signal-desktop
@@ -105,7 +102,7 @@ buildEnv {
     wine
     yarn
     zip
-    zoom-us
+    #zoom-us
     direnv gcc python # because monorepo
   ];
 }

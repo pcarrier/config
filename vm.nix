@@ -1,8 +1,7 @@
 {config, lib, pkgs, ...}:
 {
   boot = {
-    initrd.availableKernelModules = [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "sd_mod" "sr_mod" ];
-    growPartition = true;
+    initrd.availableKernelModules = [ "nvme" ];
     loader.systemd-boot.enable = true;
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
@@ -21,10 +20,6 @@
       driSupport = true;
     };
     u2f.enable = true;
-  };
-  fileSystems = {
-    "/boot" = { device = "/dev/disk/by-label/ESP"; fsType = "vfat"; };
-    "/" = { device = "/dev/disk/by-label/nixos"; fsType = "ext4"; autoResize = true; };
   };
   fonts = {
     enableCoreFonts = true;
@@ -69,6 +64,7 @@
     useSandbox = true;
     maxJobs = lib.mkDefault 8;
     nixPath = [
+      "nixos-config=/repos/config/vm.nix"
       "nixpkgs=/repos/nixpkgs"
     ];
   };
@@ -136,13 +132,6 @@
   };
   system = {
     stateVersion = "17.09";
-    build.p = import <nixpkgs/nixos/lib/make-disk-image.nix> {
-      name = "pcarrier-vm";
-      inherit pkgs lib config;
-      partitionTableType = "efi";
-      diskSize = 10240;
-      format = "vpc";
-    };
   };
   time.timeZone = "America/Toronto";
   users = {
@@ -169,4 +158,13 @@
   virtualisation = {
     docker.enable = true;
   };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/f8bd3c00-d519-416f-b98a-824b46071ff7";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/99E4-CF5E";
+      fsType = "vfat";
+    };
 }
