@@ -1,9 +1,8 @@
 {config, lib, pkgs, ...}:
 {
   boot = {
-    initrd.availableKernelModules = [ "mptspi" "vmw_balloon" "vmwgfx" "vmw_vmci" "vmw_vsock_vmci_transport" "vmxnet3" "vsock" ];
+    initrd.availableKernelModules = [ "nvme" "mptspi" "vmw_balloon" "vmwgfx" "vmw_vmci" "vmw_vsock_vmci_transport" "vmxnet3" "vsock" ];
     loader.systemd-boot.enable = true;
-    kernelParams = [ "nomodeset" ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
       "fs.inotify.max_user_instances" = 1024;
@@ -11,19 +10,22 @@
       "vm.dirty_writeback_centisecs" = 6000;
     };
   };
-  environment.systemPackages = with pkgs; [
-    breeze-gtk
-    breeze-qt5
-    breeze-icons
-    gnome3.adwaita-icon-theme
-    hicolor_icon_theme
-    coreutils
-    powertop
-  ];
-  hardware = {
-    opengl.driSupport = true;
-    pulseaudio.enable = true;
-    u2f.enable = true;
+  environment = {
+    systemPackages = with pkgs; [
+      breeze-gtk
+      breeze-qt5
+      breeze-icons
+      gnome3.adwaita-icon-theme
+      hicolor_icon_theme
+      coreutils
+      powertop
+    ];
+    etc."systemd/network/ethernet.network".text = ''
+      [Match]
+      Name = en*
+      [Network]
+      DHCP=ipv4
+    '';
   };
   fileSystems = {
     "/" = { device = "/dev/disk/by-label/root"; fsType = "ext4"; };
@@ -48,10 +50,12 @@
       enable = true;
     };
   };
+  hardware = {
+    opengl.driSupport = true;
+    pulseaudio.enable = true;
+    u2f.enable = true;
+  };
   i18n = {
-    consoleFont = "ter-u12n";
-    consoleKeyMap = "us";
-    consolePackages = [ pkgs.terminus_font ];
     defaultLocale = "en_CA.UTF-8";
     supportedLocales = [
       "en_CA.UTF-8/UTF-8"
@@ -60,11 +64,11 @@
     ];
   };
   networking = {
+    connman.enable = true;
     enableIPv6 = false;
     extraHosts = "127.0.0.1 pcarrier-vm";
     firewall.allowedTCPPorts = [ 80 443 32400 32469 ];
     hostName = "pcarrier-vm";
-    #useNetworkd = true;
   };
   nix = {
     gc.automatic = false;
@@ -121,7 +125,7 @@
     };
     xserver = {
       enable = true;
-      dpi = 96;
+      desktopManager.xterm.enable = false;
       displayManager.lightdm = {
         enable = true;
         greeter.enable = false;
@@ -136,6 +140,7 @@
     };
     vmwareGuest.enable = true;
   };
+  systemd.network.enable = true;
   system.stateVersion = "17.09";
   time.timeZone = "America/Toronto";
   users = {
