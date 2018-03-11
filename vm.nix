@@ -20,12 +20,6 @@
       coreutils
       powertop
     ];
-    etc."systemd/network/ethernet.network".text = ''
-      [Match]
-      Name = en*
-      [Network]
-      DHCP=ipv4
-    '';
   };
   fileSystems = {
     "/" = { device = "/dev/disk/by-label/root"; fsType = "ext4"; };
@@ -75,7 +69,7 @@
     package = pkgs.nixUnstable;
     readOnlyStore = true;
     useSandbox = true;
-    maxJobs = lib.mkDefault 8;
+    maxJobs = lib.mkDefault 4;
     nixPath = [
       "nixos-config=/repos/config/vm.nix"
       "nixpkgs=/repos/nixpkgs"
@@ -105,16 +99,7 @@
       syntaxHighlighting.enable = true;
     };
   };
-  security = {
-    rtkit.enable = true;
-    pam.loginLimits = [
-      { domain = "@audio"; item = "memlock"; type = "-"   ; value = "unlimited"; }
-      { domain = "@audio"; item = "rtprio" ; type = "-"   ; value = "99"       ; }
-      { domain = "@audio"; item = "nofile" ; type = "soft"; value = "99999"    ; }
-      { domain = "@audio"; item = "nofile" ; type = "hard"; value = "99999"    ; }
-    ];
-    sudo.wheelNeedsPassword = false;
-  };
+  security.sudo.wheelNeedsPassword = false;
   services = {
     locate.enable = true;
     resolved.enable = true;
@@ -140,7 +125,7 @@
     };
     vmwareGuest.enable = true;
   };
-  systemd.network.enable = true;
+  systemd.resolved.enable = true;
   system.stateVersion = "17.09";
   time.timeZone = "America/Toronto";
   users = {
