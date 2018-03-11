@@ -3,14 +3,16 @@
 buildEnv {
   name = "pcarrier-env";
   paths = with pkgs; [
+    # calligra krita okular plex
+    # slack skype signal-desktop spotify steam
+    # virtmanager zoom-us
     acpi
     alacritty
     aria2
     audacity
     baze
     bc
-    dash
-    #calligra
+    binutils
     clipshot
     coreutils
     cpufrequtils
@@ -18,17 +20,18 @@ buildEnv {
     dfc
     direnv
     displays
-    dmidecode
     dolphin
     ethtool
     ffmpeg
     file
+    filelight
     firefox
     fzf
     gitAndTools.gitFull
     gitAndTools.hub
     glxinfo
-    #google-chrome
+    google-chrome
+    gradle
     haskellPackages.greenclip
     htop
     idea.idea-ultimate
@@ -36,8 +39,6 @@ buildEnv {
     iotop
     iperf
     jq
-    #krita
-    lastpass-cli
     ldns
     libarchive
     lm_sensors
@@ -46,7 +47,6 @@ buildEnv {
     lzip
     manpages
     maven
-    minijail
     mosh
     most
     mpv
@@ -54,14 +54,11 @@ buildEnv {
     nix-prefetch-scripts
     nix-repl
     nodejs
-    nsjail
     nzbget
-    okular
-    oraclejdk8
     oxygen-icons5
     paprefs
     patchelf
-    #plex
+    pciutils
     poppler_utils
     posix_man_pages
     powertop
@@ -72,15 +69,10 @@ buildEnv {
     rtorrent
     ruby
     scrot
-    #skype
-    slack
     socat
-    #spotify
     sshfs-fuse
-    #steam
     strace
     sublime3
-    signal-desktop
     sysstat
     tig
     tmux
@@ -88,9 +80,9 @@ buildEnv {
     tree
     unrar
     unzip
+    usbutils
     visualvm
     vim
-    virtmanager
     wget
     wireshark-qt
     xclip
@@ -102,7 +94,7 @@ buildEnv {
     wine
     yarn
     zip
-    #zoom-us
+    zulu8 # oraclejdk8 zulu9
     direnv gcc python # because monorepo
   ];
 }

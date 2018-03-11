@@ -1,8 +1,9 @@
 {config, lib, pkgs, ...}:
 {
   boot = {
-    initrd.availableKernelModules = [ "nvme" ];
+    initrd.availableKernelModules = [ "mptspi" "vmw_balloon" "vmwgfx" "vmw_vmci" "vmw_vsock_vmci_transport" "vmxnet3" "vsock" ];
     loader.systemd-boot.enable = true;
+    kernelParams = [ "nomodeset" ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
       "fs.inotify.max_user_instances" = 1024;
@@ -11,15 +12,22 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    breeze-gtk breeze-qt5 breeze-icons gnome3.adwaita-icon-theme hicolor_icon_theme
+    breeze-gtk
+    breeze-qt5
+    breeze-icons
+    gnome3.adwaita-icon-theme
+    hicolor_icon_theme
     coreutils
     powertop
   ];
   hardware = {
-    opengl = {
-      driSupport = true;
-    };
+    opengl.driSupport = true;
+    pulseaudio.enable = true;
     u2f.enable = true;
+  };
+  fileSystems = {
+    "/" = { device = "/dev/disk/by-label/root"; fsType = "ext4"; };
+    "/boot" = { device = "/dev/disk/by-label/BOOT"; fsType = "vfat"; };
   };
   fonts = {
     enableCoreFonts = true;
@@ -40,12 +48,6 @@
       enable = true;
     };
   };
-  networking = {
-    enableIPv6 = false;
-    extraHosts = "127.0.0.1 pcarrier-vm";
-    firewall.allowedTCPPorts = [ 80 443 32400 32469 ];
-    hostName = "pcarrier-vm";
-  };
   i18n = {
     consoleFont = "ter-u12n";
     consoleKeyMap = "us";
@@ -56,6 +58,13 @@
       "en_DK.UTF-8/UTF-8"
       "en_US.UTF-8/UTF-8"
     ];
+  };
+  networking = {
+    enableIPv6 = false;
+    extraHosts = "127.0.0.1 pcarrier-vm";
+    firewall.allowedTCPPorts = [ 80 443 32400 32469 ];
+    hostName = "pcarrier-vm";
+    #useNetworkd = true;
   };
   nix = {
     gc.automatic = false;
@@ -71,6 +80,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      pulseaudio = true;
     };
     overlays = [ (import ./pkgs) ];
   };
@@ -102,37 +112,31 @@
     sudo.wheelNeedsPassword = false;
   };
   services = {
-    avahi = {
-      enable = true;
-      nssmdns = true;
-      publish = {
-        enable = true;
-        addresses = true;
-      };
-      ipv6 = false;
-    };
     locate.enable = true;
+    resolved.enable = true;
     openssh = {
       enable = true;
       passwordAuthentication = false;
       startWhenNeeded = true;
     };
     xserver = {
-      # dpi = 120;
       enable = true;
+      dpi = 96;
+      displayManager.lightdm = {
+        enable = true;
+        greeter.enable = false;
+        autoLogin = {
+          enable = true;
+          user = "pcarrier";
+        };
+      };
       layout = "us";
-      # libinput = {
-      #   enable = true;
-      #   naturalScrolling = true;
-      # };
       # xkbOptions = "ctrl:nocaps";
       windowManager.i3.enable = true;
     };
     vmwareGuest.enable = true;
   };
-  system = {
-    stateVersion = "17.09";
-  };
+  system.stateVersion = "17.09";
   time.timeZone = "America/Toronto";
   users = {
     extraUsers.pcarrier = {
@@ -155,16 +159,5 @@
     };
     defaultUserShell = "/run/current-system/sw/bin/zsh";
   };
-  virtualisation = {
-    docker.enable = true;
-  };
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f8bd3c00-d519-416f-b98a-824b46071ff7";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/99E4-CF5E";
-      fsType = "vfat";
-    };
+  virtualisation.docker.enable = true;
 }
