@@ -12,12 +12,8 @@
   };
   environment = {
     systemPackages = with pkgs; [
-      breeze-gtk
-      breeze-qt5
-      breeze-icons
-      gnome3.adwaita-icon-theme
-      hicolor_icon_theme
       coreutils
+      linuxPackages.perf
       powertop
     ];
   };
@@ -31,7 +27,6 @@
     fonts = with pkgs; [
       corefonts
       dejavu_fonts
-      emojione
       font-droid
       pragmatapro
       tflfonts
@@ -102,12 +97,23 @@
   security.sudo.wheelNeedsPassword = false;
   services = {
     locate.enable = true;
-    resolved.enable = true;
+    logind = {
+      lidSwitch = "ignore";
+      lidSwitchDocked = "ignore";
+      extraConfig = ''
+        HandlePowerKey=ignore
+        HandeSuspendKey=ignore
+        HandleHibernateKey=ignore
+      '';
+    };
+    nscd.enable = false;
     openssh = {
       enable = true;
       passwordAuthentication = false;
       startWhenNeeded = true;
     };
+    resolved.enable = true;
+    timesyncd.enable = false;
     xserver = {
       enable = true;
       desktopManager.xterm.enable = false;
@@ -119,14 +125,15 @@
           user = "pcarrier";
         };
       };
+      dpi = 96;
       layout = "us";
       # xkbOptions = "ctrl:nocaps";
       windowManager.i3.enable = true;
     };
     vmwareGuest.enable = true;
   };
-  systemd.resolved.enable = true;
   system.stateVersion = "17.09";
+  systemd.sockets."systemd-rfkill".enable = false;
   time.timeZone = "America/Toronto";
   users = {
     extraUsers.pcarrier = {

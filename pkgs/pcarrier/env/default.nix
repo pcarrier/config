@@ -8,6 +8,7 @@ buildEnv {
     # virtmanager zoom-us
     acpi
     alacritty
+    alsaUtils
     aria2
     audacity
     baze
@@ -30,6 +31,7 @@ buildEnv {
     gitAndTools.gitFull
     gitAndTools.hub
     glxinfo
+    grv
     google-chrome
     gradle
     haskellPackages.greenclip
@@ -62,6 +64,7 @@ buildEnv {
     poppler_utils
     posix_man_pages
     powertop
+    pstree
     qjackctl
     rclone
     rofi
