@@ -29,9 +29,9 @@ buildEnv {
     firefox
     fzf
     gitAndTools.gitFull
+    gitAndTools.grv
     gitAndTools.hub
     glxinfo
-    grv
     google-chrome
     gradle
     haskellPackages.greenclip
@@ -94,7 +94,6 @@ buildEnv {
     xorg.xrandr
     xsettingsd
     whois
-    wine
     yarn
     zip
     zulu8 # oraclejdk8 zulu9

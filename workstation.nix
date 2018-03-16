@@ -63,7 +63,6 @@
       font-droid
       pragmatapro
       tflfonts
-      noto-fonts
       noto-fonts-emoji
       ubuntu_font_family
     ];

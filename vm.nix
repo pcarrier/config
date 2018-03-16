@@ -30,9 +30,7 @@
       font-droid
       pragmatapro
       tflfonts
-      noto-fonts
       noto-fonts-emoji
-      ubuntu_font_family
     ];
     fontconfig = {
       antialias = true;
@@ -127,7 +125,7 @@
       };
       dpi = 96;
       layout = "us";
-      # xkbOptions = "ctrl:nocaps";
+      xkbOptions = "lv3:ralt_switch"; # "ctrl:nocaps"
       windowManager.i3.enable = true;
     };
     vmwareGuest.enable = true;
