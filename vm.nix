@@ -18,8 +18,8 @@
     ];
   };
   fileSystems = {
-    "/" = { device = "/dev/disk/by-label/root"; fsType = "ext4"; };
-    "/boot" = { device = "/dev/disk/by-label/BOOT"; fsType = "vfat"; };
+    "/" = { device = "/dev/disk/by-label/slash"; fsType = "ext4"; };
+    "/boot" = { device = "/dev/disk/by-label/EFI"; fsType = "vfat"; };
   };
   fonts = {
     enableCoreFonts = true;
@@ -51,7 +51,10 @@
     ];
   };
   networking = {
-    connman.enable = true;
+    connman = {
+      enable = true;
+      enableVPN = false;
+    };
     enableIPv6 = false;
     extraHosts = "127.0.0.1 pcarrier-vm";
     firewall.allowedTCPPorts = [ 80 443 32400 32469 ];
@@ -135,7 +138,6 @@
   time.timeZone = "America/Toronto";
   users = {
     extraUsers.pcarrier = {
-      initialHashedPassword = "$6$T.YMRekPaHmm$KQfAVkgfFfeFU6Ervn19QH09FEWOhVrKi5GYH9yG6ZqaPxJEHHNthyHWrnA50rg9pmd2mlJXcPY5UqQ4/yKJo/";
       home = "/home";
       extraGroups = [
         "audio"
