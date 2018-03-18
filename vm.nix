@@ -1,14 +1,16 @@
 {config, lib, pkgs, ...}:
 {
   boot = {
+    extraModulePackages = [ ];
     initrd.availableKernelModules = [ "nvme" "mptspi" "vmw_balloon" "vmwgfx" "vmw_vmci" "vmw_vsock_vmci_transport" "vmxnet3" "vsock" ];
-    loader.systemd-boot.enable = true;
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 1048576;
       "fs.inotify.max_user_instances" = 1024;
       "fs.inotify.max_queued_events" = 32768;
       "vm.dirty_writeback_centisecs" = 6000;
     };
+    kernelModules = [ "kvm-intel" ];
+    loader.systemd-boot.enable = true;
   };
   environment = {
     systemPackages = with pkgs; [
@@ -25,7 +27,6 @@
     enableCoreFonts = true;
     enableFontDir = true;
     fonts = with pkgs; [
-      corefonts
       dejavu_fonts
       font-droid
       pragmatapro
@@ -79,15 +80,16 @@
     overlays = [ (import ./pkgs) ];
   };
   programs = {
-    mosh.enable = true; # for UDP firewall
-    mtr.enable = true; # SUID
-    qt5ct.enable = true;
+    mosh.enable = true;
+    mtr.enable = true;
+    #qt5ct.enable = true;
     ssh = {
       startAgent = true;
       extraConfig = ''
         StrictHostKeyChecking=no
       '';
     };
+    sway.enable = true;
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -118,14 +120,15 @@
     xserver = {
       enable = true;
       desktopManager.xterm.enable = false;
+      # displayManager.gdm.enable = true;
       displayManager.lightdm = {
         enable = true;
-        greeter.enable = false;
-        autoLogin = {
-          enable = true;
-          user = "pcarrier";
-        };
-      };
+        # greeter.enable = false;
+        # autoLogin = {
+        #   enable = true;
+        #   user = "pcarrier";
+        # };
+     };
       dpi = 96;
       layout = "us";
       xkbOptions = "lv3:ralt_switch"; # "ctrl:nocaps"
@@ -143,6 +146,7 @@
         "audio"
         "docker"
         "systemd-journal"
+        "sway"
         "video"
         "wheel"
       ];
