@@ -82,7 +82,6 @@
   programs = {
     mosh.enable = true;
     mtr.enable = true;
-    #qt5ct.enable = true;
     ssh = {
       startAgent = true;
       extraConfig = ''
@@ -120,14 +119,13 @@
     xserver = {
       enable = true;
       desktopManager.xterm.enable = false;
-      # displayManager.gdm.enable = true;
       displayManager.lightdm = {
         enable = true;
-        # greeter.enable = false;
-        # autoLogin = {
-        #   enable = true;
-        #   user = "pcarrier";
-        # };
+        greeter.enable = false;
+        autoLogin = {
+          enable = true;
+          user = "pcarrier";
+        };
      };
       dpi = 96;
       layout = "us";

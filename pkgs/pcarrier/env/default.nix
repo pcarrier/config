@@ -12,12 +12,12 @@ buildEnv {
     baze bc binutils
     coreutils cpufrequtils ctags
     dfc direnv displays dolphin
-    ethtool
+    efibootmgr ethtool
     ffmpeg file filelight firefox fzf
     gitAndTools.gitFull gitAndTools.hub
     glxinfo goimports google-chrome gradle
     htop
-    idea.idea-ultimate iftop iotop iperf
+    idea.idea-ultimate iftop iotop iozone iperf
     jq
     ldns libarchive ltrace lzip
     manpages maven mosh most mpv
